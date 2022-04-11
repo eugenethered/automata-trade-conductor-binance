@@ -1,2 +1,8 @@
-# automata-trade-executor-binance
-Automata Binance Trade Executor
+# Automata Binance Trade Executor
+
+## Packaging
+`python3 -m build`
+
+## Clean the build
+`rm -fr dist automata.trade.executor.binance.egg-info`
+
