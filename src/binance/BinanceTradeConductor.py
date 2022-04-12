@@ -11,4 +11,3 @@ class BinanceTradeConductor:
     def conduct_trading(self):
         trade = self.trade_conductor.fetch_trade_to_execute()
         print(f'trade: {trade}')
-        # todo: take the next actions
