@@ -6,7 +6,7 @@ from core.arguments.ParseDictionaryArgs import ParseDictionaryArgs
 def init_arg_parser() -> argparse.ArgumentParser:
 
     command_line_argument_parser = argparse.ArgumentParser(
-        usage='%(prog)s [OPTIONS] URL',
+        usage='%(prog)s [OPTIONS]',
         description='Binance Automata Trade Executor'
     )
 
@@ -17,7 +17,5 @@ def init_arg_parser() -> argparse.ArgumentParser:
     )
 
     command_line_argument_parser.add_argument('--options', nargs='*', required=False, help='Specific options for Binance trade executor.', action=ParseDictionaryArgs)
-
-    command_line_argument_parser.add_argument('url', help='Binance trade executor URL.')
 
     return command_line_argument_parser

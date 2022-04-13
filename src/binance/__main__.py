@@ -10,9 +10,9 @@ if __name__ == '__main__':
     args = command_line_arg_parser.parse_args()
 
     logging.basicConfig(level=logging.INFO)
-    logging.info(f'Binance Trade Executor starting with URL {args.url} OPTIONS {args.options}')
+    logging.info(f'Binance Trade Executor starting with OPTIONS {args.options}')
 
     RedisCacheHolder(args.options)
 
-    trade_executor = BinanceTradeConductor(args.url, args.options)
+    trade_executor = BinanceTradeConductor(args.options)
     trade_executor.conduct_trading()
