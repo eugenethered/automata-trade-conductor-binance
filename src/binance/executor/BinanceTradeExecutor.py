@@ -2,23 +2,19 @@ from binance.spot import Spot
 from core.trade.InstrumentTrade import InstrumentTrade
 from trade.executor.TradeExecutor import TradeExecutor
 
+from src.binance.executor.handler.TradeSubmissionHandler import TradeSubmissionHandler
+
 
 class BinanceTradeExecutor(TradeExecutor):
 
     def __init__(self, options):
         self.options = options
         self.spot_client = Spot(self.options['BINANCE_API_KEY'], self.options['BINANCE_API_SECRET'])
-        # todo: need to obtain updates for orders (Market | Limit)
+        # todo: need to obtain updates for order (Market | Limit)
 
     def trade(self, trade: InstrumentTrade) -> InstrumentTrade:
-        # todo: handle errors (not enough funds)
-        # todo: handle wrong arguments (e.g. GTC not needed)
-        # todo: handle wrong instrument
-        # todo: handle API key fails
-        # todo: wrong market
-        # todo: ERROR format -> binance.error.ClientError: (400, -2010, 'Account has insufficient balance for requested action.')
-        response = self.submit_market_order(trade)
-        print(f'response -> {response}')
+        trade_submission_handler = TradeSubmissionHandler(trade)
+        trade_submission_handler.submit_trade(self.submit_market_order)
         return trade
 
     def submit_market_order(self, trade: InstrumentTrade):
