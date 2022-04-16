@@ -25,6 +25,5 @@ class BinanceTradeExecutor(TradeExecutor):
             symbol=trade_parameters['SYMBOL'],
             side=trade_parameters['SIDE'],
             type=trade_parameters['ORDER_TYPE'],
-            quantity=trade_parameters['QUANTITY'],
-            timeInForce=trade_parameters['ORDER_CANCELLATION_OPTION']
+            quantity=trade_parameters['QUANTITY']
         )

@@ -28,8 +28,7 @@ class BinanceTradeTransformer:
                 'SYMBOL': as_data(transform_rule, 'instrument'),
                 'SIDE': as_data(transform_rule, 'side'),
                 'ORDER_TYPE': as_data(transform_rule, 'orderType'),
-                'QUANTITY': trade.quantity,
-                'ORDER_CANCELLATION_OPTION': 'GTC'
+                'QUANTITY': trade.quantity
             }
             return trade_parameters
         else:

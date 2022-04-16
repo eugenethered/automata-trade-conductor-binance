@@ -1,4 +1,5 @@
 from cache.holder.RedisCacheHolder import RedisCacheHolder
+from core.number.BigFloat import BigFloat
 from core.trade.InstrumentTrade import InstrumentTrade
 from trade.TradeConductor import TradeConductor
 
@@ -14,6 +15,6 @@ class BinanceTradeConductorSimulation:
         self.trade_conductor = TradeConductor(options, trade_executor)
 
     def store_trade_for_execution(self):
-        trade = InstrumentTrade('USDT', 'BTC', 0.000025)
+        trade = InstrumentTrade('USDT', 'BTC', BigFloat('0.000025'))
         self.trade_conductor.store_trade_to_execute(trade)
         print(f'Trade stored for execution')

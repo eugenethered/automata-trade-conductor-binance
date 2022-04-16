@@ -16,7 +16,7 @@ class TradeSubmissionHandler:
             self.update_trade_as_submitted()
             logging.info(f'Submitted trade -> {self.trade}')
         except ClientError as error:
-            self.update_trade_with_error(error.error_message)
+            self.update_trade_with_error(f'{error.error_message} [{error.error_code}]')
             logging.warning(f'Could not submit trade -> {self.trade}')
 
     def update_trade_as_submitted(self):
