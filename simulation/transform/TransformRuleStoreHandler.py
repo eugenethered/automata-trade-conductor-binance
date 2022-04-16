@@ -24,7 +24,23 @@ class TransformRuleStoreHandler:
                     'side': 'BUY',
                     'orderType': 'MARKET'
                 }
-            }
+            },
+            {
+                'trade': 'BUSD/USDT',
+                'transform': {
+                    'instrument': 'BUSDUSDT',
+                    'side': 'SELL',
+                    'orderType': 'MARKET'
+                }
+            },
+            {
+                'trade': 'USDT/BUSD',
+                'transform': {
+                    'instrument': 'BUSDUSDT',
+                    'side': 'BUY',
+                    'orderType': 'MARKET'
+                }
+            },
         ]
 
     def store_transformation_rules(self, key):

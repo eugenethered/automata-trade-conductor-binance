@@ -4,6 +4,8 @@ from cache.holder.RedisCacheHolder import RedisCacheHolder
 from core.trade.InstrumentTrade import InstrumentTrade
 from utility.json_utility import as_data
 
+from src.binance.executor.transformer.error.TradeTransformException import TradeTransformException
+
 
 class BinanceTradeTransformer:
 
@@ -33,7 +35,7 @@ class BinanceTradeTransformer:
             return trade_parameters
         else:
             logging.warning(f'No Trade Transformation Rule for trade:{trade_key}')
-            return None
+            raise TradeTransformException(f'{trade_key} does not have a trade transform rule')
 
     @staticmethod
     def obtain_trade_key(trade: InstrumentTrade):
