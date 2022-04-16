@@ -1,3 +1,5 @@
+import logging
+
 from binance.error import ClientError
 from core.trade.InstrumentTrade import InstrumentTrade, Status
 
@@ -12,8 +14,10 @@ class TradeSubmissionHandler:
             response = func(self.trade)
             print(f'Trade got the following response! -> {response}')
             self.update_trade_as_submitted()
+            logging.info(f'Submitted trade -> {self.trade}')
         except ClientError as error:
             self.update_trade_with_error(error.error_message)
+            logging.warning(f'Could not submit trade -> {self.trade}')
 
     def update_trade_as_submitted(self):
         self.trade.status = Status.SUBMITTED

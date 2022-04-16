@@ -18,7 +18,7 @@ class BinanceTradeTransformer:
     @staticmethod
     def unpack_transform_rules(transform_rules):
         for transform_rule in transform_rules:
-            yield as_data(transform_rule, 'trade'), {'transform': as_data(transform_rule, 'transform')}
+            yield as_data(transform_rule, 'trade'), as_data(transform_rule, 'transform')
 
     def transform(self, trade: InstrumentTrade):
         trade_key = self.obtain_trade_key(trade)
@@ -31,7 +31,6 @@ class BinanceTradeTransformer:
                 'QUANTITY': trade.quantity,
                 'ORDER_CANCELLATION_OPTION': 'GTC'
             }
-            logging.info(f'Trading parameters -> {trade_parameters}')
             return trade_parameters
         else:
             logging.warning(f'No Trade Transformation Rule for trade:{trade_key}')
