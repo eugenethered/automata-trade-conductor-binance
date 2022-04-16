@@ -9,8 +9,8 @@ class TradeSubmissionHandler:
 
     def submit_trade(self, func):
         try:
-            # todo: can we get the response?? (could include order details)
-            func(self.trade)
+            response = func(self.trade)
+            print(f'Trade got the following response! -> {response}')
             self.update_trade_as_submitted()
         except ClientError as error:
             self.update_trade_with_error(error.error_message)
