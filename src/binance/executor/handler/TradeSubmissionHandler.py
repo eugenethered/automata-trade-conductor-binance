@@ -2,6 +2,7 @@ import logging
 
 from binance.error import ClientError
 from core.trade.InstrumentTrade import InstrumentTrade, Status
+from utility.json_utility import as_data, as_json
 
 from src.binance.executor.transformer.error.TradeTransformException import TradeTransformException
 
@@ -14,14 +15,17 @@ class TradeSubmissionHandler:
     def submit_trade(self, func):
         try:
             response = func(self.trade)
-            print(f'Trade got the following response! -> {response}')
-            self.update_trade_as_submitted()
-            logging.info(f'Submitted trade -> {self.trade}')
+            self.update_successful_trade(response)
         except TradeTransformException as error:
             self.update_trade_with_error(error.error_message, 10000)
         except ClientError as error:
             self.update_trade_with_error(error.error_message, error.error_code)
             logging.warning(f'Could not submit trade -> {self.trade}')
+
+    def update_successful_trade(self, trade_submission_response):
+        order_id = as_data(trade_submission_response, 'orderId')
+        self.trade.status = Status.EXECUTED
+        self.trade.order_id = str(order_id)
 
     def update_trade_as_submitted(self):
         self.trade.status = Status.SUBMITTED

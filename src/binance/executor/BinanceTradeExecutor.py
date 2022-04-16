@@ -12,7 +12,6 @@ class BinanceTradeExecutor(TradeExecutor):
         self.options = options
         self.trade_transformer = trade_transformer
         self.spot_client = Spot(self.options['BINANCE_API_KEY'], self.options['BINANCE_API_SECRET'])
-        # todo: need to obtain updates for order (Market | Limit)
 
     def trade(self, trade: InstrumentTrade) -> InstrumentTrade:
         trade_submission_handler = TradeSubmissionHandler(trade)

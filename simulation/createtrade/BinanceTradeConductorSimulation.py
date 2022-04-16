@@ -15,6 +15,6 @@ class BinanceTradeConductorSimulation:
         self.trade_conductor = TradeConductor(options, trade_executor)
 
     def store_trade_for_execution(self):
-        trade = InstrumentTrade('BUSD', 'USDT', BigFloat('9'))
+        trade = InstrumentTrade('USDT', 'BUSD', BigFloat('11'))
         self.trade_conductor.store_trade_to_execute(trade)
         print(f'Trade stored for execution')
