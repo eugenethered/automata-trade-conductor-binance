@@ -3,7 +3,7 @@ import unittest
 from binance.error import ClientError
 from core.trade.InstrumentTrade import InstrumentTrade, Status
 
-from src.binance.executor.handler.TradeSubmissionHandler import TradeSubmissionHandler
+from binance.executor.handler.TradeSubmissionHandler import TradeSubmissionHandler
 
 
 class TradeSubmissionHandlerTestCase(unittest.TestCase):

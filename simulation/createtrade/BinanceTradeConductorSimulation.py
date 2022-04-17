@@ -3,7 +3,7 @@ from core.number.BigFloat import BigFloat
 from core.trade.InstrumentTrade import InstrumentTrade
 from trade.TradeConductor import TradeConductor
 
-from src.binance.executor.BinanceTradeExecutor import BinanceTradeExecutor
+from binance.executor.BinanceTradeExecutor import BinanceTradeExecutor
 
 
 class BinanceTradeConductorSimulation:

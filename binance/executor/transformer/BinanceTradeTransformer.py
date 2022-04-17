@@ -4,7 +4,7 @@ from cache.holder.RedisCacheHolder import RedisCacheHolder
 from core.trade.InstrumentTrade import InstrumentTrade
 from utility.json_utility import as_data
 
-from src.binance.executor.transformer.error.TradeTransformException import TradeTransformException
+from binance.executor.transformer.error.TradeTransformException import TradeTransformException
 
 
 class BinanceTradeTransformer:

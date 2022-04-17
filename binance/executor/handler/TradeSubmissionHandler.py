@@ -2,9 +2,9 @@ import logging
 
 from binance.error import ClientError
 from core.trade.InstrumentTrade import InstrumentTrade, Status
-from utility.json_utility import as_data, as_json
+from utility.json_utility import as_data
 
-from src.binance.executor.transformer.error.TradeTransformException import TradeTransformException
+from binance.executor.transformer.error.TradeTransformException import TradeTransformException
 
 
 class TradeSubmissionHandler:

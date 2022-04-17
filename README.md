@@ -3,8 +3,12 @@
 ## Packaging
 `python3 -m build`
 
-## Clean the build
-`rm -fr dist automata.trade.executor.binance.egg-info`
+## Dependencies (IDE Terminal)
+`pip install persuader-technology-automata-core`
+`pip install persuader-technology-automata-utilities`
+`pip install persuader-technology-automata-redis`
+`pip install persuader-technology-automata-trade.executor`
+`pip install binance-connector`
 
 ## Running
 

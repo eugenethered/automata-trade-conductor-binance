@@ -1,7 +1,7 @@
 from trade.TradeConductor import TradeConductor
 
-from src.binance.executor.BinanceTradeExecutor import BinanceTradeExecutor
-from src.binance.executor.transformer.BinanceTradeTransformer import BinanceTradeTransformer
+from binance.executor.BinanceTradeExecutor import BinanceTradeExecutor
+from binance.executor.transformer.BinanceTradeTransformer import BinanceTradeTransformer
 
 
 class BinanceTradeConductor:

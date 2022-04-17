@@ -2,8 +2,8 @@ from binance.spot import Spot
 from core.trade.InstrumentTrade import InstrumentTrade
 from trade.executor.TradeExecutor import TradeExecutor
 
-from src.binance.executor.handler.TradeSubmissionHandler import TradeSubmissionHandler
-from src.binance.executor.transformer.BinanceTradeTransformer import BinanceTradeTransformer
+from binance.executor.handler.TradeSubmissionHandler import TradeSubmissionHandler
+from binance.executor.transformer.BinanceTradeTransformer import BinanceTradeTransformer
 
 
 class BinanceTradeExecutor(TradeExecutor):
