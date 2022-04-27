@@ -1,7 +1,7 @@
 from trade.TradeConductor import TradeConductor
 
-from binance.executor.BinanceTradeExecutor import BinanceTradeExecutor
-from binance.executor.transformer.BinanceTradeTransformer import BinanceTradeTransformer
+from binancetrade.executor.BinanceTradeExecutor import BinanceTradeExecutor
+from binancetrade.executor.transformer.BinanceTradeTransformer import BinanceTradeTransformer
 
 
 class BinanceTradeConductor:
@@ -13,4 +13,5 @@ class BinanceTradeConductor:
         self.trade_conductor = TradeConductor(self.options, trade_executor)
 
     def conduct_trading(self):
+        # todo: need simple schedular
         self.trade_conductor.perform_trade()
