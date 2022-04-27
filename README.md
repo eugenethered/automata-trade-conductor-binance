@@ -4,7 +4,7 @@
 `python3 -m build`
 
 ## Dependencies (IDE Terminal)
-`pip install binance-connector persuader-technology-automata-core persuader-technology-automata-utilities persuader-technology-automata-redis persuader-technology-automata-trade.executor`
+`pip install binance-connector persuader-technology-automata-trade.executor`
 
 ## Running
 
