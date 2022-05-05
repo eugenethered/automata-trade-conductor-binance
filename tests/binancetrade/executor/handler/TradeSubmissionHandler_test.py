@@ -16,11 +16,12 @@ class TradeSubmissionHandlerTestCase(unittest.TestCase):
         trade_submission_handler = TradeSubmissionHandler(trade)
 
         def trade_submit_function(trade):
-            pass
+            return {'orderId': '8888-8888'}
 
         trade_submission_handler.submit_trade(trade_submit_function)
         self.assertEqual(trade.status, Status.SUBMITTED)
         self.assertEqual(trade.description, None)
+        self.assertEqual(trade.order_id, '8888-8888')
 
     def test_should_raise_exception_when_account_has_insufficient_amount_to_trade(self):
         trade = InstrumentTrade('USDT', 'BTC', 100)
@@ -30,11 +31,11 @@ class TradeSubmissionHandlerTestCase(unittest.TestCase):
         trade_submission_handler = TradeSubmissionHandler(trade)
 
         def trade_submit_function(trade):
-            raise ClientError(error_code=-2010, error_message='Account has insufficient balance for requested action.', status_code=None, header=None)
+            raise ClientError(error_code=-1013, error_message='Account has insufficient balance for requested action.', status_code=None, header=None)
 
         trade_submission_handler.submit_trade(trade_submit_function)
         self.assertEqual(trade.status, Status.ERROR)
-        self.assertEqual(trade.description, 'Account has insufficient balance for requested action.')
+        self.assertEqual(trade.description, 'Not Enough Funds - Account has insufficient balance for requested action. [-1013]')
 
 
 if __name__ == '__main__':
