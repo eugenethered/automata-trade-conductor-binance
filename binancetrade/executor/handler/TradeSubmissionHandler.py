@@ -15,20 +15,20 @@ class TradeSubmissionHandler:
     def submit_trade(self, func):
         try:
             response = func(self.trade)
-            self.update_successful_trade(response)
+            # todo: unpack response -> standarized method
+            self.update_submitted_trade(response)
         except TradeTransformException as error:
+            # todo: all errors updated -> standarized method
             self.update_trade_with_error(error.error_message, 10000)
         except ClientError as error:
+            # todo: all errors updated -> standarized method
             self.update_trade_with_error(error.error_message, error.error_code)
             logging.warning(f'Could not submit trade -> {self.trade}')
 
-    def update_successful_trade(self, trade_submission_response):
+    def update_submitted_trade(self, trade_submission_response):
         order_id = as_data(trade_submission_response, 'orderId')
-        self.trade.status = Status.EXECUTED
-        self.trade.order_id = str(order_id)
-
-    def update_trade_as_submitted(self):
         self.trade.status = Status.SUBMITTED
+        self.trade.order_id = str(order_id)
 
     def update_trade_with_error(self, error_message, error_code):
         self.trade.status = Status.ERROR
