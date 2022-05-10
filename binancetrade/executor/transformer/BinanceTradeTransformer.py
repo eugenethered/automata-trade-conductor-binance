@@ -1,7 +1,11 @@
 import logging
 
 from cache.holder.RedisCacheHolder import RedisCacheHolder
+from config.report.holder.ConfigReporterHolder import ConfigReporterHolder
+from core.market.Market import Market
+from core.missing.Context import Context
 from core.trade.InstrumentTrade import InstrumentTrade
+from missingrepo.Missing import Missing
 from utility.json_utility import as_data
 
 from binancetrade.executor.transformer.error.TradeTransformException import TradeTransformException
@@ -11,6 +15,7 @@ class BinanceTradeTransformer:
 
     def __init__(self, options):
         self.transform_rules = self.load_transform_rules(options)
+        self.config_reporter = ConfigReporterHolder()
 
     def load_transform_rules(self, options):
         cache = RedisCacheHolder()
@@ -35,6 +40,8 @@ class BinanceTradeTransformer:
             return trade_parameters
         else:
             logging.warning(f'No Trade Transformation Rule for trade:{trade_key}')
+            missing = Missing(trade_key, Context.TRADE, Market.BINANCE, f'Catastrophic cannot trade {trade_key}')
+            self.config_reporter(missing)
             raise TradeTransformException(f'{trade_key} does not have a trade transform rule')
 
     @staticmethod

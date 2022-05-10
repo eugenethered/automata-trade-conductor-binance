@@ -1,6 +1,7 @@
 import logging
 
 from cache.holder.RedisCacheHolder import RedisCacheHolder
+from config.report.holder.ConfigReporterHolder import ConfigReporterHolder
 from core.arguments.command_line_arguments import option_arg_parser
 
 from binancetrade.BinanceTradeConductor import BinanceTradeConductor
@@ -13,6 +14,8 @@ if __name__ == '__main__':
     logging.info(f'Binance Trade Executor starting with OPTIONS {args.options}')
 
     RedisCacheHolder(args.options)
+
+    ConfigReporterHolder(args.options)
 
     trade_executor = BinanceTradeConductor(args.options)
     trade_executor.conduct_trading()
