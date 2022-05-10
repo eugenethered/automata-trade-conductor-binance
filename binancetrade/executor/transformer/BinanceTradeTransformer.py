@@ -1,11 +1,13 @@
 import logging
+from typing import List
 
-from cache.holder.RedisCacheHolder import RedisCacheHolder
 from config.report.holder.ConfigReporterHolder import ConfigReporterHolder
 from core.market.Market import Market
 from core.missing.Context import Context
 from core.trade.InstrumentTrade import InstrumentTrade
 from missingrepo.Missing import Missing
+from tradetransformrepo.TradeTransform import TradeTransform
+from tradetransformrepo.repository.TradeTransformRepository import TradeTransformRepository
 from utility.json_utility import as_data
 
 from binancetrade.executor.transformer.error.TradeTransformException import TradeTransformException
@@ -13,28 +15,29 @@ from binancetrade.executor.transformer.error.TradeTransformException import Trad
 
 class BinanceTradeTransformer:
 
-    def __init__(self, options):
-        self.transform_rules = self.load_transform_rules(options)
+    def __init__(self, repository: TradeTransformRepository):
+        self.repository = repository
         self.config_reporter = ConfigReporterHolder()
+        self.transform_rules = self.load_transform_rules()
 
-    def load_transform_rules(self, options):
-        cache = RedisCacheHolder()
-        transform_rules = cache.fetch(options['TRADE_TRANSFORM_RULES_KEY'], as_type=dict)
-        return dict(self.unpack_transform_rules(transform_rules))
+    def load_transform_rules(self):
+        trade_transformations = self.repository.retrieve()
+        return dict(self.unpack_transform_rules(trade_transformations))
 
     @staticmethod
-    def unpack_transform_rules(transform_rules):
-        for transform_rule in transform_rules:
-            yield as_data(transform_rule, 'trade'), as_data(transform_rule, 'transform')
+    def unpack_transform_rules(trade_transformations: List[TradeTransform]):
+        for trade_transform in trade_transformations:
+            yield trade_transform.trade, trade_transform.transform
 
     def transform(self, trade: InstrumentTrade):
         trade_key = self.obtain_trade_key(trade)
         if trade_key in self.transform_rules:
-            transform_rule = self.transform_rules[trade_key]
+            trade_transform = self.transform_rules[trade_key]
+            (instrument, side, order_type) = self.extract_transform_constituents(trade_transform)
             trade_parameters = {
-                'SYMBOL': as_data(transform_rule, 'instrument'),
-                'SIDE': as_data(transform_rule, 'side'),
-                'ORDER_TYPE': as_data(transform_rule, 'orderType'),
+                'SYMBOL': instrument,
+                'SIDE': side,
+                'ORDER_TYPE': order_type,
                 'QUANTITY': trade.quantity
             }
             return trade_parameters
@@ -47,3 +50,8 @@ class BinanceTradeTransformer:
     @staticmethod
     def obtain_trade_key(trade: InstrumentTrade):
         return f'{trade.instrument_from}/{trade.instrument_to}'
+
+    @staticmethod
+    def extract_transform_constituents(transform):
+        return as_data(transform, 'instrument'), as_data(transform, 'side'), as_data(transform, 'orderType')
+

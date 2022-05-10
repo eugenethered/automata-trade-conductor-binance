@@ -13,5 +13,11 @@
 2. Choose `Edit configurations...`
 3. In `Paramaters:` 
    ```
-   --options REDIS_SERVER_ADDRESS=192.168.1.90 REDIS_SERVER_PORT=6379 TRADE_TRANSFORM_RULES_KEY=binance:trade:transform-rules TRADE_KEY=binance:trade BINANCE_API_KEY=<API_KEY> BINANCE_API_SECRET=<API_SECRET>
+   --options 
+     REDIS_SERVER_ADDRESS=192.168.1.90 
+     REDIS_SERVER_PORT=6379 
+     TRADE_TRANSFORMATIONS_KEY=binance:trade:transformations 
+     TRADE_KEY=binance:trade 
+     BINANCE_API_KEY=<API_KEY> 
+     BINANCE_API_SECRET=<API_SECRET>
    ```

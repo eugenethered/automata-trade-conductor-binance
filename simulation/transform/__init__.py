@@ -1,4 +1,4 @@
-from simulation.transform.TransformRuleStoreHandler import TransformRuleStoreHandler
+from simulation.transform.TradeTransformStoreHandler import TradeTransformStoreHandler
 
 if __name__ == '__main__':
 
@@ -7,7 +7,7 @@ if __name__ == '__main__':
         'REDIS_SERVER_PORT': 6379
     }
 
-    TRANSFORMATION_RULES_KEY = 'binance:trade:transform-rules'
+    TRADE_TRANSFORMATIONS_KEY = 'binance:trade:transformations'
 
-    rule_handler = TransformRuleStoreHandler(options)
-    rule_handler.store_transformation_rules(TRANSFORMATION_RULES_KEY)
+    transform_handler = TradeTransformStoreHandler(options)
+    transform_handler.store_transformations(TRADE_TRANSFORMATIONS_KEY)

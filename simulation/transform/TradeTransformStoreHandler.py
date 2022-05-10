@@ -1,13 +1,13 @@
 from cache.holder.RedisCacheHolder import RedisCacheHolder
 
 
-class TransformRuleStoreHandler:
+class TradeTransformStoreHandler:
 
     def __init__(self, options):
         self.cache = RedisCacheHolder(options)
 
     @staticmethod
-    def obtain_transformation_rules():
+    def obtain_transformations():
         return [
             {
                 'trade': 'BTC/USDT',
@@ -43,7 +43,7 @@ class TransformRuleStoreHandler:
             },
         ]
 
-    def store_transformation_rules(self, key):
-        transformation_rules = self.obtain_transformation_rules()
-        self.cache.store(key, transformation_rules)
-        print(f'Stored [{len(transformation_rules)}] transformation rules')
+    def store_transformations(self, key):
+        transformations = self.obtain_transformations()
+        self.cache.store(key, transformations)
+        print(f'Stored [{len(transformations)}] transformations')
