@@ -12,7 +12,7 @@ class TradeTransformStoreHandler:
             {
                 'trade': 'BTC/USDT',
                 'transform': {
-                    'instrument': 'BNBUSDT',
+                    'instrument': 'BTCUSDT',
                     'side': 'SELL',
                     'orderType': 'MARKET'
                 }
@@ -20,7 +20,7 @@ class TradeTransformStoreHandler:
             {
                 'trade': 'USDT/BTC',
                 'transform': {
-                    'instrument': 'BNBUSDT',
+                    'instrument': 'BTCUSDT',
                     'side': 'BUY',
                     'orderType': 'MARKET'
                 }
