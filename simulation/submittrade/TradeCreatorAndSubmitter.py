@@ -12,7 +12,7 @@ class TradeCreatorAndSubmitter:
         self.conductor = BinanceTradeConductor(options)
 
     def create_trade(self):
-        trade = InstrumentTrade('USDT', 'BUSD', BigFloat('11'), Status.NEW)
+        trade = InstrumentTrade('USDT', 'BUSD', BigFloat('11'), status=Status.NEW)
         self.trade_repository.store_trade(trade)
 
     def submit_trade(self):
