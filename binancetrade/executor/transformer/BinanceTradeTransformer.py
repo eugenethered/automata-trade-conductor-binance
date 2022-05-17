@@ -42,9 +42,9 @@ class BinanceTradeTransformer:
             }
             return trade_parameters
         else:
-            logging.warning(f'No Trade Transformation Rule for trade:{trade_key}')
+            logging.warning(f'No Trade Transformation for trade:{trade_key}')
             missing = Missing(trade_key, Context.TRADE, Market.BINANCE, f'Catastrophic cannot trade {trade_key}')
-            self.config_reporter(missing)
+            self.config_reporter.report_missing(missing)
             raise TradeTransformException(f'{trade_key} does not have a trade transformation')
 
     @staticmethod
