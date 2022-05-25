@@ -11,7 +11,9 @@ if __name__ == '__main__':
         'TRADE_TRANSFORMATIONS_KEY': 'binance:trade:transformations',
         'TRADE_KEY': 'test:trade',
         'MISSING_KEY': 'binance:missing',
-        'AUTH_INFO_KEY': 'binance:auth:info'
+        'AUTH_INFO_KEY': 'binance:auth:info',
+        'PROCESS_KEY': '{}:process:status:{}',
+        'PROCESS_RUN_PROFILE_KEY': '{}:process:run-profile:{}'
     }
 
     RedisCacheHolder(options)

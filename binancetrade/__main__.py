@@ -3,19 +3,27 @@ import logging
 from cache.holder.RedisCacheHolder import RedisCacheHolder
 from config.report.holder.ConfigReporterHolder import ConfigReporterHolder
 from core.arguments.command_line_arguments import option_arg_parser
+from logger.ConfigureLogger import ConfigureLogger
 
 from binancetrade.BinanceTradeConductor import BinanceTradeConductor
 
-if __name__ == '__main__':
-    command_line_arg_parser = option_arg_parser()
+
+def start():
+    ConfigureLogger()
+
+    command_line_arg_parser = option_arg_parser('persuader-technology-automata-trade-conductor-binance')
     args = command_line_arg_parser.parse_args()
 
-    logging.basicConfig(level=logging.INFO)
-    logging.info(f'Binance Trade Executor starting with OPTIONS {args.options}')
+    log = logging.getLogger('Binance Position Conductor')
+    log.info('position conductor initialized')
 
     RedisCacheHolder(args.options)
 
     ConfigReporterHolder(args.options)
 
-    trade_executor = BinanceTradeConductor(args.options)
-    trade_executor.conduct_trading()
+    conductor = BinanceTradeConductor(args.options)
+    conductor.start_process_schedule()
+
+
+if __name__ == '__main__':
+    start()
