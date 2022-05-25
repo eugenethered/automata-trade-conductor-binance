@@ -10,6 +10,7 @@ from binancetrade.executor.transformer.error.TradeTransformException import Trad
 class TradeSubmissionHandler:
 
     def __init__(self, trade: InstrumentTrade):
+        self.log = logging.getLogger(__name__)
         self.trade = trade
 
     def submit_trade(self, func):
@@ -20,13 +21,13 @@ class TradeSubmissionHandler:
             self.update_trade_with_error(error.error_message, 10000)
         except ClientError as error:
             self.update_trade_with_error(error.error_message, error.error_code)
-            logging.warning(f'Could not submit trade -> {self.trade}')
+            self.log.warning(f'Could not submit trade -> {self.trade}')
 
     def update_submitted_trade(self, trade_submission_response):
         order_id = as_data(trade_submission_response, 'orderId')
         self.trade.status = Status.SUBMITTED
         self.trade.order_id = str(order_id)
-        logging.info(f'Submitted trade {self.trade}')
+        self.log.info(f'Submitted trade {self.trade}')
 
     def update_trade_with_error(self, error_message, error_code):
         self.trade.status = Status.ERROR

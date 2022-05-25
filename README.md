@@ -18,6 +18,4 @@
      REDIS_SERVER_PORT=6379 
      TRADE_TRANSFORMATIONS_KEY=binance:trade:transformations 
      TRADE_KEY=binance:trade 
-     BINANCE_API_KEY=<API_KEY> 
-     BINANCE_API_SECRET=<API_SECRET>
    ```

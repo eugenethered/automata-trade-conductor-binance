@@ -2,7 +2,6 @@ import logging
 from typing import List
 
 from config.report.holder.ConfigReporterHolder import ConfigReporterHolder
-from core.market.Market import Market
 from core.missing.Context import Context
 from core.trade.InstrumentTrade import InstrumentTrade
 from coreutility.collection.dictionary_utility import as_data
@@ -16,6 +15,7 @@ from binancetrade.executor.transformer.error.TradeTransformException import Trad
 class BinanceTradeTransformer:
 
     def __init__(self, repository: TradeTransformRepository):
+        self.log = logging.getLogger(__name__)
         self.repository = repository
         self.config_reporter = ConfigReporterHolder()
         self.transform_rules = self.load_transform_rules()
@@ -42,8 +42,8 @@ class BinanceTradeTransformer:
             }
             return trade_parameters
         else:
-            logging.warning(f'No Trade Transformation for trade:{trade_key}')
-            missing = Missing(trade_key, Context.TRADE, Market.BINANCE, f'Catastrophic cannot trade {trade_key}')
+            self.log.warning(f'{trade_key} does not have a trade transformation')
+            missing = Missing(trade_key, Context.TRADE, 'binance', f'Catastrophic cannot trade {trade_key}')
             self.config_reporter.report_missing(missing)
             raise TradeTransformException(f'{trade_key} does not have a trade transformation')
 

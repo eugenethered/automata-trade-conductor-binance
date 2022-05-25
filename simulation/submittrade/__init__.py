@@ -10,9 +10,7 @@ if __name__ == '__main__':
         'REDIS_SERVER_PORT': 6379,
         'TRADE_TRANSFORMATIONS_KEY': 'binance:trade:transformations',
         'TRADE_KEY': 'test:trade',
-        'MISSING_KEY': 'binance:missing',
-        'BINANCE_API_KEY': '<API-KEY>',
-        'BINANCE_API_SECRET': '<API-SECRET>'
+        'MISSING_KEY': 'binance:missing'
     }
 
     RedisCacheHolder(options)
