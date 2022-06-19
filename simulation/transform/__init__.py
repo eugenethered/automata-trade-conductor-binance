@@ -7,7 +7,7 @@ if __name__ == '__main__':
         'REDIS_SERVER_PORT': 6379
     }
 
-    TRADE_TRANSFORMATIONS_KEY = 'binance:trade:transformations'
+    TRADE_TRANSFORMATIONS_KEY = 'binance:transformation:trade'
 
     transform_handler = TradeTransformStoreHandler(options)
     transform_handler.store_transformations(TRADE_TRANSFORMATIONS_KEY)
