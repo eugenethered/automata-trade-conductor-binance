@@ -10,7 +10,7 @@ from binancetrade.executor.transformer.error.TradeTransformException import Trad
 class TradeSubmissionHandler:
 
     def __init__(self, trade: InstrumentTrade):
-        self.log = logging.getLogger(__name__)
+        self.log = logging.getLogger('TradeSubmissionHandler')
         self.trade = trade
 
     def submit_trade(self, func):

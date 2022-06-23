@@ -12,7 +12,7 @@ from binancetrade.executor.transformer.BinanceTradeTransformer import BinanceTra
 class BinanceTradeExecutor(TradeExecutor):
 
     def __init__(self, options, trade_transformer: BinanceTradeTransformer):
-        self.log = logging.getLogger(__name__)
+        self.log = logging.getLogger('BinanceTradeExecutor')
         self.options = options
         self.trade_transformer = trade_transformer
         (self.api_key, self.api_secret) = self.init_auth_credentials()

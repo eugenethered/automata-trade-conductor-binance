@@ -15,7 +15,7 @@ from binancetrade.executor.transformer.error.TradeTransformException import Trad
 class BinanceTradeTransformer:
 
     def __init__(self, repository: TradeTransformRepository):
-        self.log = logging.getLogger(__name__)
+        self.log = logging.getLogger('BinanceTradeTransformer')
         self.repository = repository
         self.config_reporter = ConfigReporterHolder()
         self.transform_rules = self.load_transform_rules()
