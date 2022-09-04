@@ -18,6 +18,9 @@ ENV PYTHONPATH="${PYTHONPATH}:/app/binancetrade"
     TRADE_TRANSFORMATIONS_KEY=binance:transformation:mv:trade \
     TRADE_KEY=binance:trade \
     MISSING_KEY=binance:mv:missing \
-    AUTH_INFO_KEY=binance:auth:info
+    AUTH_INFO_KEY=binance:auth:info \
+    VERSION=0.1 \
+    PROCESS_RUN_PROFILE_KEY={}:process:run-profile:{} \
+    PROCESS_KEY={}:process:status:{}
 
 CMD ["python", "binancetrade/__main__.py"]
