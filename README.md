@@ -1,8 +1,7 @@
 # Automata Binance Trade Conductor
 
 ## Docker
-1. `docker build . -t persuadertechnology/automata-trade-conductor:binance-0.1`
-2. `docker image prune --filter label=stage=BUILDER`
+* `docker build . -t persuadertechnology/automata-trade-conductor:binance-0.1 && docker image prune --filter label=stage=BUILDER`
 
 ## Publishing to Docker Repository
 todo: automate this...
