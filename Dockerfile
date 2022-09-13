@@ -12,7 +12,7 @@ WORKDIR /app
 COPY --from=BUILDER /usr/local/lib/python3.10/site-packages/ /usr/local/lib/python3.10/site-packages/
 COPY --chown=apprunner:apprunner ./binancetrade ./binancetrade
 
-ENV PYTHONPATH="${PYTHONPATH}:/app/binancetrade"
+ENV PYTHONPATH="${PYTHONPATH}:/app/binancetrade" \
     REDIS_SERVER_ADDRESS=127.0.0.1 \
     REDIS_SERVER_PORT=6379 \
     TRADE_TRANSFORMATIONS_KEY=binance:transformation:mv:trade \
